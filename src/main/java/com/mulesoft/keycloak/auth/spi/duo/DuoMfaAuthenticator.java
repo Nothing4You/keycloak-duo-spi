@@ -84,9 +84,9 @@ public class DuoMfaAuthenticator implements Authenticator {
     private boolean duoRequired(String duoGroups, UserModel user) {
         if (duoGroups == null) return true;
         if (duoGroups != null && duoGroups.isEmpty()) return true;
-        List<String> groups = Arrays.asList(duoGroups.split(","));
+        List<String> groups = Arrays.asList(duoGroups.toLowerCase().split(","));
         for (GroupModel group : user.getGroups()) {
-            if (groups.contains(group.getName())) {
+            if (groups.contains(group.getName().toLowerCase())) {
                 return true;
             }
         }
